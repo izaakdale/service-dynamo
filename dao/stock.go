@@ -5,7 +5,6 @@ import (
 	"log"
 
 	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
 )
 
 type StockIndex struct {
@@ -27,7 +26,7 @@ func (c *Client) StoreStockPrice(si StockIndex) {
 
 	log.Println("Hello from DB client")
 
-	testMap, err := dynamodbattribute.MarshalMap(si)
+	testMap, err := c.marshal(si)
 	if err != nil {
 		log.Fatal(err)
 	}
